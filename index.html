@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>จองห้องประชุม</title>
+</head>
+<body>
+    <h1>ระบบจองห้องประชุม</h1>
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST">
+        ชื่อผู้จอง: <input type="text" name="name" required><br>
+        วันที่: <input type="date" name="date" required><br>
+        เวลาเริ่ม: <input type="time" name="start_time" required><br>
+        เวลาสิ้นสุด: <input type="time" name="end_time" required><br>
+        <button type="submit">จอง</button>
+    </form>
+    <h2>รายการจองทั้งหมด</h2>
+    <ul>
+        {% for booking in bookings %}
+            <li>{{ booking[1] }} - {{ booking[2] }} {{ booking[3] }} ถึง {{ booking[4] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
